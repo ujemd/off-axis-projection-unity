@@ -51,7 +51,7 @@ namespace Apt.Unity.Projection
         private bool firstmsg = true;
         private float zoffset = 0.0f;
 
-        //private offset = new 
+        private volatile bool _shouldStop;
         #endregion
 
         #region public members
@@ -79,20 +79,33 @@ namespace Apt.Unity.Projection
 
         void Update()
         {
-            if (Input.GetKeyUp(KeyCode.S) || Input.GetKey(KeyCode.KeypadEnter))
+            XMovement = irises.eyeX;
+            YMovement = irises.eyeY;
+            ZMovement = irises.eyeZ;
+
+            if (XMovement == 0.0f && YMovement == 0.0f && ZMovement == 0.0f)
             {
-                IsTracking = !IsTracking;
+                IsTracking = false;
                 SecondsHasBeenTracked = 0;
+                Debug.Log("Not tracking");
             }
+            else
+            {
+                IsTracking = true;
+            }
+
+            //if (Input.GetKeyUp(KeyCode.S) || Input.GetKey(KeyCode.KeypadEnter))
+            //{
+            //    IsTracking = !IsTracking;
+            //    SecondsHasBeenTracked = 0;
+            //}
 
             if (Input.GetKeyUp(KeyCode.Escape))
             {
                 Application.Quit();
             }
 
-            XMovement = irises.eyeX;
-            YMovement = irises.eyeY;
-            ZMovement = irises.eyeZ;
+            
 
             if(IsTracking)
             {
@@ -110,6 +123,17 @@ namespace Apt.Unity.Projection
 
         }
 
+        private void OnApplicationQuit()
+        {
+            RequestStop();
+            //tcpListenerThread.Join();
+        }
+
+        public void RequestStop()
+        {
+            _shouldStop = true;
+        }
+
         /// <summary> 	
         /// Runs in background TcpServerThread; Handles incomming TcpClient requests 	
         /// </summary> 	
@@ -122,7 +146,7 @@ namespace Apt.Unity.Projection
                 tcpListener.Start();
                 Debug.Log("Server is listening");
                 Byte[] bytes = new Byte[1024];
-                while (true)
+                while (!_shouldStop)
                 {
                     using (connectedTcpClient = tcpListener.AcceptTcpClient())
                     {
@@ -146,6 +170,7 @@ namespace Apt.Unity.Projection
                         }
                     }
                 }
+                Debug.Log("Terminating server thread.");
             }
             catch (SocketException socketException)
             {
