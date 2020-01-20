@@ -7,10 +7,9 @@ This work is based on the article found [here](https://medium.com/@michel.brisis
 The application can be executed as follows:
 
 - Run 'off-axis-projection.exe' found in the Built-Application folder.
-- Press 'S' or 'Enter' in the application
 - From console, access the Python-tracking directory >> cd C:\<path>\off-axis-projection-unity-master\Python-tracking
 - Run >>python main.py
 
-The application should begin showing the off-axis perspective as in this [video](https://drive.google.com/file/d/11oc2YuKHkMvqdLqCBxBuSGJyH_6QfDcP/view?usp=sharing).
+The application should begin showing the off-axis perspective as shown in this [video](https://drive.google.com/file/d/11oc2YuKHkMvqdLqCBxBuSGJyH_6QfDcP/view?usp=sharing).
 
 For exiting the applications just press Esc.
