@@ -1,0 +1,1 @@
+Download yolo.weight from here: https://drive.google.com/drive/folders/0B1tW_VtY7onidEwyQ2FtQVplWEU and put it in bin folder.
