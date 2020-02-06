@@ -14,6 +14,8 @@ The application can be executed as follows:
 
 The application should begin showing the off-axis perspective as shown in this [video](https://drive.google.com/file/d/11oc2YuKHkMvqdLqCBxBuSGJyH_6QfDcP/view?usp=sharing).
 
+## Intelligent desktop
+
 To run object detection part, run object_detection_darkflow.py file from Python-tracking folder. Darkflow framework should be installed previously, as explained in the following link: https://towardsdatascience.com/yolov2-object-detection-using-darkflow-83db6aa5cf5f. Video showing the demo of the application is present in the following link: https://drive.google.com/open?id=1zB8pSATkNv59yAFRSDUCvrFnwwERF9Cx.
 
 For exiting the applications just press Esc.
